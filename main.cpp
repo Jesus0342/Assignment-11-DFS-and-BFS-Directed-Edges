@@ -68,12 +68,12 @@ int main()
 		cout << dfs.at(i) << endl;
 	}
 
-//	cout << "\nTotal Distance Traveled: " << dfsDistance << endl;
-//
+	cout << "\nTotal Distance Traveled: " << dfsDistance << endl;
+
 	// Vectors containing the discovery and back edges of the graph.
-	vector<string> dfsDiscoveryEdges = digraph.discoveryEdgesDFS(dfs);
-	vector<string> dfsBackEdges = digraph.backEdgesDFS(dfs);
-	vector<string> dfsForwardEdges = digraph.forwardEdgesDFS(dfs);
+	vector<string> dfsDiscoveryEdges = digraph.discoveryEdges(dfs);
+	vector<string> dfsBackEdges = digraph.backEdges(dfs);
+	vector<string> dfsForwardEdges = digraph.forwardEdges(dfs);
 
 	cout << "\nPrinting DFS discovery edges:\n";
 	for(unsigned int i = 0; i < dfsDiscoveryEdges.size(); i++)

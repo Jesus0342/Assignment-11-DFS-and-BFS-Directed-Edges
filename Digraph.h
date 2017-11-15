@@ -103,15 +103,19 @@ public:
 	// PRE-CONDITIONS:
 	// dfs - Vector of city names in the order they were visited during DFS must
 	// 		 be defined.
-	vector<string> discoveryEdgesDFS(vector<string> &dfs);
+	vector<string> discoveryEdges(vector<string> &searchOrder);
 
 	// Returns a list of the back edges created by the DFS.
 	// PRE-CONDITIONS:
 	// dfs - Vector of city names in the order they were visited during DFS must
 	// 		 be defined.
-	vector<string> backEdgesDFS(vector<string> &dfs);
+	vector<string> backEdges(vector<string> &searchOrder);
 
-	vector<string> forwardEdgesDFS(vector<string> &dfs);
+	// Returns a list of the forward edges created by the search.
+	// PRECONDITIONS:
+	// dfs - Vector of city names in the order they were visited during DFS must
+	// 		 be defined.
+	vector<string> forwardEdges(vector<string> &searchOrder);
 
 	// Performs a recursive breadth-first search on the Digraph starting at the
 	// indicated city.
@@ -123,9 +127,15 @@ public:
 	int BFS(string startingCity, vector<string> &bfs);
 
 private:
-	//
+	// Marks the back edges of a vertex.
+	// PRE-CONDITIONS:
+	// currVertex - The current vertex being visited must be defined.
+	// dfs - Vector of cities in the order they were visited must be defined.
 	void markBackEdges(int currVertex, vector<string> &dfs);
 
+	// Marks the forward edges of a vertex.
+	// PRE-CONDITIONS:
+	// dfs - Vector of cities in the order they were visited must be defined.
 	void markForwardEdges(vector<string> &dfs);
 
 	// Finds the closest vertex to the current vertex and returns its Digraph index.
@@ -134,6 +144,8 @@ private:
 	// dfs - Vector of cities visited during DFS must be defined.
 	int smallestEdgeDFS(int currVertex, vector<string> &dfs);
 
+	// Finds the closest back edge of a vertex if no new edges can be discovered
+	// and returns the graph index of the closest vertex on a back edge.
 	int smallestBackEdge(int currVertex);
 
 	// Returns the number of vertices that have been visited.

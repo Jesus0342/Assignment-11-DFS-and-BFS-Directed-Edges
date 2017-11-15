@@ -9,7 +9,7 @@ Houston,Dallas,239
 Houston,Atlanta,810
 Miami,Houston,1187
 Atlanta,Miami,661
-New York,Atlanta,1260
+New York,Atlanta,888
 New York,Chicago,787
 Boston,New York,214
 Chicago,Boston,983
