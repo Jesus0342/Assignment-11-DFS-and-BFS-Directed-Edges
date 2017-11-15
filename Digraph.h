@@ -103,13 +103,15 @@ public:
 	// PRE-CONDITIONS:
 	// dfs - Vector of city names in the order they were visited during DFS must
 	// 		 be defined.
-	vector<string> getDiscoveryEdges(vector<string> &dfs);
+	vector<string> discoveryEdgesDFS(vector<string> &dfs);
 
 	// Returns a list of the back edges created by the DFS.
 	// PRE-CONDITIONS:
 	// dfs - Vector of city names in the order they were visited during DFS must
 	// 		 be defined.
-	vector<string> getBackEdges(vector<string> &dfs);
+	vector<string> backEdgesDFS(vector<string> &dfs);
+
+	vector<string> forwardEdgesDFS(vector<string> &dfs);
 
 	// Performs a recursive breadth-first search on the Digraph starting at the
 	// indicated city.
@@ -123,6 +125,8 @@ public:
 private:
 	//
 	void markBackEdges(int currVertex, vector<string> &dfs);
+
+	void markForwardEdges(vector<string> &dfs);
 
 	// Finds the closest vertex to the current vertex and returns its Digraph index.
 	// PRE-CONDITIONS:

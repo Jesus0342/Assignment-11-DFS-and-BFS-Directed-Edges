@@ -172,12 +172,12 @@ int Digraph::DFS(string startingCity, vector<string> &dfs)
 		DFS(digraph.at(nextVertex).city, dfs);
 	}
 
-	// Mark all forward and cross edges here.
+	markForwardEdges(dfs);
 
 	return dfsDistance;
 }
 
-vector<string> Digraph::getDiscoveryEdges(vector<string> &dfs)
+vector<string> Digraph::discoveryEdgesDFS(vector<string> &dfs)
 {
 	vector<Edge> discEdges; // Vector of the discovery edges.
 
@@ -196,9 +196,6 @@ vector<string> Digraph::getDiscoveryEdges(vector<string> &dfs)
 		}
 	}
 
-	// Deletes edges with the same vertices to avoid duplicates.
-	deleteDuplicates(discEdges);
-
 	// Iterator to the beginning of the vector of discovery edges.
 	vector<Edge>::iterator edgeIt = discEdges.begin();
 
@@ -215,7 +212,7 @@ vector<string> Digraph::getDiscoveryEdges(vector<string> &dfs)
 	return discoveryEdges;
 }
 
-vector<string> Digraph::getBackEdges(vector<string> &dfs)
+vector<string> Digraph::backEdgesDFS(vector<string> &dfs)
 {
 	vector<Edge> backEdges; // Vector of back edges.
 
@@ -227,16 +224,12 @@ vector<string> Digraph::getBackEdges(vector<string> &dfs)
 		for(unsigned int j = 0; j < digraph.at(dfsIndex).edgeList.size(); j++)
 		{
 			// Only adds the edge to the vector if it is a back edge.
-			if(!(digraph.at(dfsIndex).edgeList.at(j).discoveryEdge))
+			if(digraph.at(dfsIndex).edgeList.at(j).backEdge)
 			{
 				backEdges.push_back(digraph.at(dfsIndex).edgeList.at(j));
-				//cout << "Added edge (" << digraph.at(dfsIndex).edgeList.at(j).u << ", " << digraph.at(dfsIndex).edgeList.at(j).v << ")\n";
 			}
 		}
 	}
-
-	// Deletes edges with the same vertices to avoid duplicates.
-	deleteDuplicates(backEdges);
 
 	// Iterator to the beginning of the vector of back edges.
 	vector<Edge>::iterator edgeIt = backEdges.begin();
@@ -252,6 +245,41 @@ vector<string> Digraph::getBackEdges(vector<string> &dfs)
 	}
 
 	return backEdgeList;
+}
+
+vector<string> Digraph::forwardEdgesDFS(vector<string> &dfs)
+{
+	vector<Edge> forwardEdges; // Vector of back edges.
+
+	// Adds the back edges to the vector in the order they were discovered.
+	for(unsigned int i = 0; i < digraph.size(); i++)
+	{
+		int dfsIndex = findVertex(dfs.at(i));
+
+		for(unsigned int j = 0; j < digraph.at(dfsIndex).edgeList.size(); j++)
+		{
+			// Only adds the edge to the vector if it is a back edge.
+			if(digraph.at(dfsIndex).edgeList.at(j).forwardEdge)
+			{
+				forwardEdges.push_back(digraph.at(dfsIndex).edgeList.at(j));
+			}
+		}
+	}
+
+	// Iterator to the beginning of the vector of back edges.
+	vector<Edge>::iterator edgeIt = forwardEdges.begin();
+
+	vector<string> forwardEdgeList; // Vector of back edge pairs.
+
+	// Adds the back edges to the string vector in (u, v) format.
+	while(edgeIt != forwardEdges.end())
+	{
+		forwardEdgeList.push_back("(" + edgeIt->u + ", " + edgeIt->v + ")");
+
+		edgeIt++;
+	}
+
+	return forwardEdgeList;
 }
 
 void Digraph::markBackEdges(int currVertex,  vector<string> &dfs)
@@ -281,10 +309,46 @@ void Digraph::markBackEdges(int currVertex,  vector<string> &dfs)
 
 		if(digraph[edgeVertex].visited && currIndex > compIndex)
 		{
-			cout << "Edge between " << digraph[currVertex].city << " and "
-				 << digraph[edgeVertex].city << " marked as back edge.\n";
-
 			digraph[currVertex].edgeList[i].backEdge = true;
+		}
+	}
+}
+
+void Digraph::markForwardEdges(vector<string> &dfs)
+{
+	for(unsigned int i = 0; i < dfs.size(); i++)
+	{
+		int currVertex = findVertex(dfs[i]);
+
+		int currIndex;
+		int compIndex;
+
+		for(unsigned int i = 0; i < dfs.size(); i++)
+		{
+			if(dfs[i] == digraph[currVertex].city)
+			{
+				currIndex = i;
+			}
+		}
+
+		for(unsigned int j = 0; j < digraph.at(currVertex).edgeList.size(); j++)
+		{
+			int edgeVertex = findVertex(digraph[currVertex].edgeList[j].v);
+
+			for(unsigned int k = 0; k < dfs.size(); k++)
+			{
+				if(dfs[k] == digraph[edgeVertex].city)
+				{
+					compIndex = k;
+				}
+			}
+
+			if(!(digraph.at(currVertex).edgeList.at(j).discoveryEdge) &&
+			   !(digraph.at(currVertex).edgeList.at(j).discoveryEdge) &&
+			   currIndex < compIndex)
+			{
+				digraph.at(currVertex).edgeList.at(j).forwardEdge = true;
+			}
 		}
 	}
 }
@@ -366,21 +430,6 @@ int Digraph::smallestEdgeDFS(int currVertex, vector<string> &dfs)
 	else
 	{
 		return smallestBackEdge(currVertex);
-
-//		// Iterator that gets the location of the current city in the vector of
-//		// names that contains the cities in the order they were visited.
-//		vector<string>::iterator dfsIt = find(dfs.begin(), dfs.end(),
-//										 	  digraph.at(currVertex).city);
-//
-//		// Decrements the iterator to the previous city visited.
-//		dfsIt--;
-//
-//		// Finds the graph index of the previous city visited.
-//		int backIndex = findVertex(*dfsIt);
-//
-//		// Preforms a recursive call to check if the previous city visited has
-//		// any unvisited edges to continue the DFS.
-//		return smallestEdgeDFS(backIndex, dfs);
 	}
 }
 
@@ -417,8 +466,6 @@ int Digraph::smallestBackEdge(int currVertex)
 
 	// Finds the graph index of the closest city.
 	smallestIndex = findVertex(nextCity);
-
-	cout << "Backtracking to " << digraph[smallestIndex].city << endl;
 
 	return smallestIndex;
 }

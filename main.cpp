@@ -33,7 +33,7 @@ int main()
 {
 	cout << "***************************************************************\n"
 		 << "* NAME           : Jesus Sanchez &\n"
-		 << "* ASSIGNMENT #10 : DFS & BFS Directed Edges\n"
+		 << "* ASSIGNMENT #11 : DFS & BFS Directed Edges\n"
 		 << "* CLASS          : CS1D - MW: 3:00pm\n"
 		 << "* DUE DATE       : 11/20/2017\n*\n"
 		 << "* DESCRIPTION: This program will demonstrate a DFS and BFS using\n"
@@ -61,7 +61,7 @@ int main()
 
 	// Performs a DFS on the graph starting at Dallas and stores the total
 	// distance traveled.
-	int dfsDistance = digraph.DFS("San Francisco", dfs);
+	int dfsDistance = digraph.DFS("Dallas", dfs);
 
 	for(unsigned int i = 0; i < dfs.size(); i++)
 	{
@@ -70,22 +70,29 @@ int main()
 
 //	cout << "\nTotal Distance Traveled: " << dfsDistance << endl;
 //
-//	// Vectors containing the discovery and back edges of the graph.
-//	vector<string> dfsDiscoveryEdges = digraph.getDiscoveryEdges(dfs);
-//	vector<string> dfsBackEdges = digraph.getBackEdges(dfs);
-//
-//	cout << "\nPrinting DFS discovery edges:\n";
-//	for(unsigned int i = 0; i < dfsDiscoveryEdges.size(); i++)
-//	{
-//		cout << dfsDiscoveryEdges.at(i) << endl;
-//	}
-//
-//	cout << "\nPrinting DFS back edges:\n";
-//	for(unsigned int i = 0; i < dfsBackEdges.size(); i++)
-//	{
-//		cout << dfsBackEdges.at(i) << endl;
-//	}
-//
+	// Vectors containing the discovery and back edges of the graph.
+	vector<string> dfsDiscoveryEdges = digraph.discoveryEdgesDFS(dfs);
+	vector<string> dfsBackEdges = digraph.backEdgesDFS(dfs);
+	vector<string> dfsForwardEdges = digraph.forwardEdgesDFS(dfs);
+
+	cout << "\nPrinting DFS discovery edges:\n";
+	for(unsigned int i = 0; i < dfsDiscoveryEdges.size(); i++)
+	{
+		cout << dfsDiscoveryEdges.at(i) << endl;
+	}
+
+	cout << "\nPrinting DFS back edges:\n";
+	for(unsigned int i = 0; i < dfsBackEdges.size(); i++)
+	{
+		cout << dfsBackEdges.at(i) << endl;
+	}
+
+	cout << "\nPrinting DFS forward & cross edges:\n";
+	for(unsigned int i = 0; i < dfsForwardEdges.size(); i++)
+	{
+		cout << dfsForwardEdges.at(i) << endl;
+	}
+
 //	cout << "\n**********\n"
 //			"* PART B *\n"
 //			"**********\n\n";
