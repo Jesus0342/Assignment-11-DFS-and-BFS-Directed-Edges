@@ -93,22 +93,22 @@ int main()
 		cout << dfsForwardEdges.at(i) << endl;
 	}
 
-//	cout << "\n**********\n"
-//			"* PART B *\n"
-//			"**********\n\n";
-//
-//	vector<string> bfs;
-//
-//	cout << "Performing a BFS starting at Dallas: \n";
-//	int bfsDistance = digraph.BFS("Dallas",bfs);
-//
-//	for(unsigned int i = 0; i < bfs.size(); i++)
-//	{
-//		cout << bfs.at(i) << endl;
-//	}
-//
-//	cout << "\nTotal Distance Traveled: " << bfsDistance << endl;
-//
+	cout << "\n**********\n"
+			"* PART B *\n"
+			"**********\n\n";
+
+	vector<string> bfs;
+
+	cout << "Performing a BFS starting at Dallas: \n";
+	int bfsDistance = digraph.BFS("Dallas",bfs);
+
+	for(unsigned int i = 0; i < bfs.size(); i++)
+	{
+		cout << bfs.at(i) << endl;
+	}
+
+	cout << "\nTotal Distance Traveled: " << bfsDistance << endl;
+
 //	cout << "\nPrinting BFS discovery edges: \n";
 //	vector<string> bfsDiscoveryEdges = digraph.getDiscoveryEdges(bfs);
 //	for(unsigned int i = 0; i < bfsDiscoveryEdges.size(); i++)
