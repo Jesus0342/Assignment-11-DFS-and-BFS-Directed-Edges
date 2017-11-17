@@ -183,6 +183,10 @@ private:
 	// PRE-CONDITIONS:
 	// v1, v2 - the vertices to find the distance between
 	int distance(Vertex * v1, Vertex * v2);
+
+	// Unmarks all visited vertices and the removes the classification given to
+	// all edges of a vertex.
+	void unmarkAll();
 };
 
 #endif

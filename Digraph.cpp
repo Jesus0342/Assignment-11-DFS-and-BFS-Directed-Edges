@@ -145,6 +145,13 @@ vector<string> Digraph::edges()
 
 int Digraph::DFS(string startingCity, vector<string> &dfs)
 {
+	// Unmarks all vertices and edges if they have previously been marked
+	// by a different traversal algorithm.
+	if(verticesVisited() == digraph.size())
+	{
+		unmarkAll();
+	}
+
 	// Gets the graph index of the vertex being visited.
 	int currVertex = findVertex(startingCity);
 
@@ -173,6 +180,7 @@ int Digraph::DFS(string startingCity, vector<string> &dfs)
 		DFS(digraph.at(nextVertex).city, dfs);
 	}
 
+	// Marks all forward edges of the DFS.
 	markForwardEdges(dfs);
 
 	return dfsDistance;
@@ -448,7 +456,20 @@ int Digraph::smallestEdgeDFS(int currVertex, vector<string> &dfs)
 	}
 	else
 	{
-		return smallestBackEdge(currVertex);
+		// Iterator that gets the location of the current city in the vector of
+		// names that contains the cities in the order they were visited.
+		vector<string>::iterator dfsIt = find(dfs.begin(), dfs.end(),
+											  digraph.at(currVertex).city);
+
+		// Decrements the iterator to the previous city visited.
+		dfsIt--;
+
+		// Finds the graph index of the previous city visited.
+		int backIndex = findVertex(*dfsIt);
+
+		// Preforms a recursive call to check if the previous city visited has
+		// any unvisited edges to continue the DFS.
+		return smallestEdgeDFS(backIndex, dfs);
 	}
 }
 
@@ -491,12 +512,11 @@ int Digraph::smallestBackEdge(int currVertex)
 
 int Digraph::BFS(string startingCity, vector<string> &bfs)
 {
-    // Reset the graph, this should be its own function
-    for (unsigned int i=0; i<digraph.size(); i++) {
-        digraph.at(i).visited = false;
-        for (unsigned int j=0; j< digraph.at(i).edgeList.size(); j++)
-            digraph.at(i).edgeList.at(j).discoveryEdge = false;
-    }
+    // Reset the graph.
+	if(verticesVisited() == digraph.size())
+	{
+		unmarkAll();
+	}
 
     // Get the graph index of the vertex being visited.
 	int currVertex = findVertex(startingCity);
@@ -666,5 +686,21 @@ void Digraph::deleteDuplicates(vector<Edge> &edgeList)
 		}
 
 		listIt++;
+	}
+}
+
+void Digraph::unmarkAll()
+{
+	for (unsigned int i=0; i<digraph.size(); i++)
+	{
+		digraph.at(i).visited = false;
+
+		for (unsigned int j=0; j< digraph.at(i).edgeList.size(); j++)
+		{
+			digraph.at(i).edgeList.at(j).discoveryEdge = false;
+			digraph.at(i).edgeList.at(j).backEdge = false;
+			digraph.at(i).edgeList.at(j).forwardEdge = false;
+			digraph.at(i).edgeList.at(j).crossEdge = false;
+		}
 	}
 }
