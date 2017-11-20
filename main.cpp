@@ -45,14 +45,14 @@ int main() {
 	digraph.initializeDigraph();
 
 	cout << "\n****************\n"
-			"* PART B - DFS *\n"
+			"* PART A - DFS *\n"
 			"****************\n\n";
 
 	// Vector of city names that will hold the cities visited during the DFS, in
 	// the order they were visited.
 	vector<string> dfs;
 
-	cout << "\nPerforming a DFS starting at Dallas:\n";
+	cout << "Performing a DFS starting at Dallas:\n";
 
 	// Performs a DFS on the graph starting at Dallas and stores the total
 	// distance traveled.

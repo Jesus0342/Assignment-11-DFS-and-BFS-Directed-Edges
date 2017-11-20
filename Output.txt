@@ -31,9 +31,8 @@ Denver
 Kansas City
 
 ****************
-* PART B - DFS *
+* PART A - DFS *
 ****************
-
 
 Performing a DFS starting at Dallas:
 Dallas
