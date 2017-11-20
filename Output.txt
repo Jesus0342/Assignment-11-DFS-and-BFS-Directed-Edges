@@ -1,0 +1,149 @@
+******************************************************
+*  PROGRAMMED BY  : Frances Ohide & Jesus Sanchez
+*  CLASS          : CS1D
+*  SECTION        : MW - 3pm
+*  ASSIGNMENT #11 : DFS and BFS - Directed Edges
+******************************************************
+
+DESCRIPTION:
+This program utilizes a user defined directed Graph ADT in
+order to demonstrate a DFS and a BFS. The DFS will begin at
+Dallas and visit all other vertices in the graph by choosing
+the edge with the smallest mileage. After the search is perf-
+ormed, the discovery, back, forward, and cross edges will be
+displayed, as well as the total distance traveled on the dis-
+covery edges. Then, the BFS will be performed, also starting
+at Dallas, and the discovery, back, and cross edges will be
+printed, as well as the total distance traveled.
+
+Adding vertices to the graph...
+Seattle
+San Francisco
+Los Angeles
+Dallas
+Houston
+Miami
+Atlanta
+New York
+Boston
+Chicago
+Denver
+Kansas City
+
+****************
+* PART B - DFS *
+****************
+
+
+Performing a DFS starting at Dallas:
+Dallas
+Kansas City
+Chicago
+Boston
+New York
+Atlanta
+Miami
+Houston
+Seattle
+San Francisco
+Los Angeles
+Denver
+
+Total Distance Traveled: 9262
+
+Printing DFS discovery edges:
+(Dallas, Kansas City)
+(Kansas City, Chicago)
+(Chicago, Boston)
+(Chicago, Seattle)
+(Boston, New York)
+(New York, Atlanta)
+(Atlanta, Miami)
+(Miami, Houston)
+(Seattle, San Francisco)
+(San Francisco, Los Angeles)
+(Los Angeles, Denver)
+
+Printing DFS back edges:
+(New York, Chicago)
+(Houston, Dallas)
+(Houston, Atlanta)
+(Denver, San Francisco)
+(Denver, Chicago)
+
+Printing DFS forward & cross edges:
+(Dallas, Los Angeles)
+(Dallas, Atlanta)
+(Kansas City, Denver)
+(Kansas City, Los Angeles)
+(Kansas City, Atlanta)
+(Kansas City, New York)
+(Seattle, Denver)
+
+****************
+* PART B - BFS *
+****************
+
+Performing a BFS starting at Dallas: 
+Dallas
+Kansas City
+Atlanta
+Los Angeles
+Chicago
+Denver
+New York
+Miami
+Boston
+Seattle
+San Francisco
+Houston
+
+Total Distance Traveled: 11299
+
+UNEXPLORED EDGES: 
+NONE!
+TOTAL DISTANCE: 0
+
+DISCOVERY EDGES: 
+(Chicago, Seattle)
+(Chicago, Boston)
+(Denver, San Francisco)
+(Kansas City, Chicago)
+(Kansas City, Denver)
+(Kansas City, New York)
+(Dallas, Los Angeles)
+(Dallas, Kansas City)
+(Dallas, Atlanta)
+(Miami, Houston)
+(Atlanta, Miami)
+TOTAL DISTANCE: 11299
+
+FORWARD EDGES: 
+NONE!
+TOTAL DISTANCE: 0
+
+BACK EDGES: 
+(Houston, Dallas)
+(Houston, Atlanta)
+TOTAL DISTANCE: 1049
+
+CROSS EDGES: 
+(Seattle, San Francisco)
+(Seattle, Denver)
+(Denver, Chicago)
+(San Francisco, Los Angeles)
+(Los Angeles, Denver)
+(Kansas City, Los Angeles)
+(Kansas City, Atlanta)
+(New York, Chicago)
+(New York, Atlanta)
+(Boston, New York)
+TOTAL DISTANCE: 8953
+
+********************************
+* PART C - STRONGLY CONNECTED? *
+********************************
+
+Reversing the edges and performing a BFS...
+
+YES! The graph is strongly connected.

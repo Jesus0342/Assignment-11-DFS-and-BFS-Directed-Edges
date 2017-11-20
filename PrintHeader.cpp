@@ -35,9 +35,9 @@ string PrintHeaderStream(const string PROGRAMMER,// IN - name of programmer/s
 	ostringstream output;
 	output << left;
 	output << "******************************************************";
-	output << "\n*  PROGRAMMED BY : " << PROGRAMMER;
-	output << "\n*  " << setw(14) << "CLASS"  << ": " << CLASS;
-	output << "\n*  " << setw(14) << "SECTION"  << ": " << SECTION;
+	output << "\n*  PROGRAMMED BY  : " << PROGRAMMER;
+	output << "\n*  " << setw(14) << "CLASS"  << " : " << CLASS;
+	output << "\n*  " << setw(14) << "SECTION"  << " : " << SECTION;
 		if (toupper(AS_TYPE) == 'L')
 		{
 			output << "\n*  LAB #" << setw(9);
@@ -46,7 +46,7 @@ string PrintHeaderStream(const string PROGRAMMER,// IN - name of programmer/s
 		{
 			output << "\n*  ASSIGNMENT #" << setw(2);
 		}
-	output << AS_NUM << ": " << AS_NAME;
+	output << AS_NUM << " : " << AS_NAME;
 	output << "\n******************************************************\n";
 	output << right;
 	return output.str();

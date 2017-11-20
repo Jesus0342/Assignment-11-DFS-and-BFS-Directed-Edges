@@ -5,7 +5,9 @@
  * SECTION        : MW: 3:00pm
  * DUE DATE       : 11/20/2017
  *****************************************************************************/
+
 #include "MyHeader.h"
+
 /******************************************************************************
  * DFS & BFS DIRECTED EDGES
  * ----------------------------------------------------------------------------
@@ -29,8 +31,7 @@
  *****************************************************************************/
 int main() {
 	//Prints header of the lab
-	cout
-			<< PrintHeaderStream(PROGRAMMER, CLASS, SECTION, AS_NAME, AS_TYPE,
+	cout << PrintHeaderStream(PROGRAMMER, CLASS, SECTION, AS_NAME, AS_TYPE,
 					AS_NUM);
 
 	//Prints program description
@@ -43,9 +44,9 @@ int main() {
 	// Initializes the graph by reading from Map.txt.
 	digraph.initializeDigraph();
 
-	cout << "\n**********\n"
-			"* PART A *\n"
-			"**********\n";
+	cout << "\n****************\n"
+			"* PART B - DFS *\n"
+			"****************\n\n";
 
 	// Vector of city names that will hold the cities visited during the DFS, in
 	// the order they were visited.
@@ -83,9 +84,9 @@ int main() {
 		cout << dfsForwardEdges.at(i) << endl;
 	}
 
-	cout << "\n**********\n"
-			"* PART B *\n"
-			"**********\n\n";
+	cout << "\n****************\n"
+			"* PART B - BFS *\n"
+			"****************\n\n";
 
 	vector<string> bfs;
 
@@ -131,10 +132,14 @@ int main() {
 	theG.displayEdges(3);
 	theG.displayEdges(4);
 
-	cout << "\n******** IS IT STRONGLY CONNECTED? *********\n";
+	cout << "\n********************************\n"
+			"* PART C - STRONGLY CONNECTED? *\n"
+			"********************************\n\n";
+
 	bool connection = theG.isStronglyConnected("Dallas");
+
 	if (connection == true) {
-		cout << "YES! It is strongly connected.";
+		cout << "YES! The graph is strongly connected.";
 	}
 
 	return 0;

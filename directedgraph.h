@@ -1,10 +1,10 @@
-/******************************************************************************
+/******************************************************
  * AUTHORS        : Jesus Sanchez & Frances Ohide
  * ASSIGNMENT #11 : DFS & BFS Directed Edges
  * CLASS          : CS1D
  * SECTION        : MW: 3:00pm
  * DUE DATE       : 11/20/2017
- *****************************************************************************/
+ ******************************************************/
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -658,11 +658,12 @@ void Graph<Type, Distance>::displayEdges(int explorationType) const {
 
 			}
 		}
-		cout << "TOTAL DISTANCE: " << totalDist << endl;
-	}
 
-	if (!atLeast1) {
-		cout << "NONE!\n";
+		if (!atLeast1) {
+			cout << "NONE!\n";
+		}
+
+		cout << "TOTAL DISTANCE: " << totalDist << endl;
 	}
 }
 template<typename Type, typename Distance>
@@ -775,6 +776,8 @@ bool Graph<Type, Distance>::isStronglyConnected(Type beginVertex) {
 	DepthFirstSearch(beginVertex, dfsVertexList);
 	this->reverseEdges();
 	DepthFirstSearch(beginVertex, dfsVertexListReversedGraph);
+
+	cout << "Reversing the edges and performing a BFS...\n\n";
 
 	// set back to default
 	this->reverseEdges();

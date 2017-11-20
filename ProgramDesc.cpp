@@ -20,7 +20,8 @@
  ************************************************************************/
 void ProgramDesc()
 {
-	cout << "This program utilizes a user defined directed Graph ADT in\n"
+	cout << "\nDESCRIPTION:\n"
+			"This program utilizes a user defined directed Graph ADT in\n"
 			"order to demonstrate a DFS and a BFS. The DFS will begin at\n"
 			"Dallas and visit all other vertices in the graph by choosing\n"
 			"the edge with the smallest mileage. After the search is perf-\n"
@@ -29,5 +30,4 @@ void ProgramDesc()
 			"covery edges. Then, the BFS will be performed, also starting\n"
 			"at Dallas, and the discovery, back, and cross edges will be\n"
 			"printed, as well as the total distance traveled.\n\n";
-
 }

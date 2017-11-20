@@ -28,10 +28,10 @@
 using namespace std;
 
 // GLOBAL CONSTANTS
-const string         PROGRAMMER	 =	"Frances Ohide & Jesus Sanches";
+const string         PROGRAMMER	 =	"Frances Ohide & Jesus Sanchez";
 const string         CLASS       = 	"CS1D";
-const string         SECTION     =  "MW 3pm";
-const string         AS_NAME     = 	"DFS and BFS- Directed";
+const string         SECTION     =  "MW - 3pm";
+const string         AS_NAME     = 	"DFS and BFS - Directed Edges";
 const char	         AS_TYPE     = 	'A'; // L OR A
 const unsigned short AS_NUM	     = 	 11 ; // lab num
 
