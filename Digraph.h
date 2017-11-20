@@ -6,8 +6,11 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+
 using namespace std;
 
+
+//*****************************************************************//
 // Struct representing an edge in the Digraph.
 struct Edge
 {
@@ -30,6 +33,7 @@ struct Edge
 		crossEdge = false;
 		weight = 0;
 	}
+
 };
 
 // Struct representing a vertex in the Digraph.
@@ -53,6 +57,9 @@ class Digraph
 public:
 	Digraph();
 	~Digraph();
+
+	void reverseEdges(vector<Edge> &edgeList);
+	bool isStronglyConnected(string beginVertex);
 
 	// Returns true if the Digraph is empty, else returns false.
 	bool empty();
@@ -188,5 +195,7 @@ private:
 	// all edges of a vertex.
 	void unmarkAll();
 };
+
+
 
 #endif
